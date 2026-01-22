@@ -3,3 +3,5 @@ uvicorn
 pandas
 joblib
 tensorflow
+pydantic
+sklearn
