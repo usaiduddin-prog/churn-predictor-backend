@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import numpy as np
 import tensorflow as tf
 from fastapi import FastAPI
 from schemas import CustomerInput
@@ -26,9 +27,9 @@ EXPECTED_COLUMNS = [
 def predict_churn(input_data: CustomerInput):
     df = pd.DataFrame([input_data.model_dump()])
     df = df[EXPECTED_COLUMNS]
-    print(df)
 
     X_processed = preprocessor.transform(df)
+    X_processed = np.array(X_processed)
 
     prob = model.predict(X_processed)[0][0]
 
