@@ -25,7 +25,10 @@ EXPECTED_COLUMNS = [
 
 @app.post("/predict")
 def predict_churn(input_data: CustomerInput):
+    print("Received input data:", input_data)
     df = pd.DataFrame([input_data.model_dump()])
+    print("model_dump:", input_data.model_dump())
+    print("DataFrame before preprocessing:", df)
     df = df[EXPECTED_COLUMNS]
 
     X_processed = preprocessor.transform(df)
